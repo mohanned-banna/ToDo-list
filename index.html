@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Final Project</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+
+</head>
+
+<body>
+    <div class="parent">
+        <div class="tabel">
+            <div class="header">
+                <span>مهامي</span>
+                <div class="iconaddtask">
+                    <button id="addTask"><i class="fa-solid fa-plus"></i></button>
+                </div>
+            </div>
+            <div class="content">
+                <div id="tasks">
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+</body>
+
+
+<script>
+
+    let tasks = [
+        {
+            title: "قراءة كتاب",
+            date: "26/1/2023",
+            isDone: false
+        },
+        {
+            title: " انهاء المشروع النهائي",
+            date: "26/1/2023",
+            isDone: false
+        },
+        {
+            title: " انهاء مشروع الجافا سكريبت",
+            date: "26/1/2023",
+            isDone: false
+        }
+    ]
+    function getTasksFromStorege(){
+        let storge = JSON.parse(localStorage.getItem("tasks"))
+        if(storge == null){
+            tasks = []
+        }
+        else{
+            tasks = storge
+        }
+    }
+         getTasksFromStorege();
+
+    function marktask(index){
+       var isDonetask = tasks[index].isDone
+        if(!isDonetask){
+            tasks[index].isDone = true
+        }
+        else{
+            tasks[index].isDone = false
+        }
+        fillTasks();
+    }
+   
+    
+    function fillTasks() {
+        
+        document.getElementById("tasks").innerHTML = ""
+        var x = -1;
+        for (var task of tasks) {
+            
+            let content = `
+         <div  class="task" ${task.isDone ?`style="background:#95fc92;"`:`style="background:white;"`}>
+                        <div class="actiontask">
+                            <div class="update-pa ">
+                               <button id="${x++}" onclick="updatetask(${x})" class=" update mutual"><i class="fa-solid fa-pen"></i></button> 
+                            </div>
+                            <div  class="mark-pa ">
+                                ${task.isDone ?`
+                                    <button  onclick="marktask(${x})" style=" background: #560450;" class=" mark mutual"><i class="fa-solid fa-xmark"></i></button>` 
+                                    :`<button  onclick="marktask(${x}) " class=" mark mutual"><i class="fa-solid fa-check"></i></button>`}
+                                
+                                
+                                <!-- <i class="fa-solid fa-xmark"></i> -->
+                            </div>
+                            <div class="delete-pa ">
+                                <button  onclick="deletetask(${x})" class=" delete mutual"><i class="fa-solid fa-trash"></i></button>
+                            </div>
+                        </div>
+                        <div class="Infotask">
+                            <span class="nametask">${task.title}</span><br>
+                            <span class="historytask">${task.date}</span>
+                            <i class="fa-regular fa-newspaper"></i>
+                        </div>
+          </div> `
+         
+          
+            document.getElementById("tasks").innerHTML += content
+            storegeLocal();
+        }
+        
+    }
+    fillTasks();
+    
+function DateNow() {
+        var now = new Date();
+        var month = now.getMonth() + 1
+        var dateNow = now.getDate() + "/" + month + "/" + now.getFullYear();
+        return dateNow;
+    }
+    
+    document.getElementById("addTask").addEventListener("click", function(){
+        document.getElementById("tasks").innerHTML = ""
+        var taskname = prompt("الرجاء ادخال عنوان المهمة");
+        var taskobj = {
+            title: taskname,
+            date: DateNow(),
+            isDone: false
+        }
+        tasks.push(taskobj)
+        storegeLocal();
+        fillTasks();
+    })
+
+    function deletetask(index) {
+        alert("هل أنت متأكد من حذف مهمة : " + tasks[index].title)
+        tasks.splice(index, 1)
+        storegeLocal();
+        fillTasks()
+    }
+
+    function updatetask(index) {
+        var updatename = prompt("الرجاء ادخال عنوان المهمة");
+        tasks[index].title = updatename;
+        tasks[index].date = DateNow();
+        storegeLocal();
+        fillTasks();
+    }
+    
+    
+
+
+
+// -------------- Storege function --------------
+function storegeLocal(){
+        let taskString = JSON.stringify(tasks);
+        localStorage.setItem("tasks",taskString)
+}
+
+</script>
+
+</html>

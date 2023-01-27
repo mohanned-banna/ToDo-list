@@ -1,0 +1,114 @@
+@import url('https://fonts.googleapis.com/css2?family=Tajawal&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Tajawal', sans-serif;
+}
+body{
+    background-color: rgb(20 99 126);
+    
+}
+.tabel{
+    width: 65%;
+    background-color:white;
+    margin: 200px auto;
+}
+.header{
+    text-align: center;
+    height: 45px;
+    background-color: rgb(40, 142, 176);
+    color: white ;
+    font-size: 25px;
+    font-family: cursive;
+    position: relative;
+    
+}
+.iconaddtask {
+    display: inline-block;
+    position: absolute;
+    bottom: 7px;
+    right: 7px;
+}
+.iconaddtask button{
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    border: none;
+    line-height: 32px;
+    
+    
+}
+.content{
+    height: 100%;
+    background-color: #edeeed;
+    
+}
+#tasks{
+    padding: 20px;
+}
+.task{
+    display: flex;
+    background-color: white;
+    height: 60px;
+    border-bottom: 1px solid black;
+    align-items: center;
+}
+.task:hover{
+    box-shadow: 0px 3px 15px rgba(97,97,97,0.843);
+}
+.Infotask{
+    justify-content: right;
+    flex: 1;
+    text-align: right;
+    font-weight: bold;
+    align-items: center;    
+    margin-right: 10px;
+
+}
+.nametask{
+    font-size: 23px;
+    
+}
+.historytask{
+    display: inline-block;
+    font-size: 13px;
+}
+.actiontask {
+    flex: 1;
+    justify-content: right;
+    display: inline-block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+.actiontask div{
+    display: inline-block;
+    margin: 0 20px;
+    
+}
+.mutual{
+    border: none;
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+}
+.delete{
+    background-color: #77000c;
+    margin-right: 70px;
+}
+.mark{
+    background-color: #008c1c;
+}
+.update{
+    background-color: #545ad8;
+}
+.mutual i{
+    color: white;
+}
+
